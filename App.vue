@@ -1,5 +1,4 @@
 <template>
-  <Scoreboard />
   <svg viewBox="0 0 600 600">
     <circle
       :cx="location.x"
@@ -15,6 +14,7 @@
       :cursor="location"
     />
   </svg>
+  <Scoreboard />
 </template>
 
 <script>

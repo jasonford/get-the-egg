@@ -6,7 +6,7 @@
     </tr>
     <tr v-for="score in scores">
       <td>{{ score.owner }}</td>
-      <td>{{ score.score }}</td>
+      <td>{{ score.count }}</td>
     </tr>
   </table>
 </template>
