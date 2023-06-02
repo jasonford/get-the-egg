@@ -4,6 +4,9 @@ dependencies:
   '@knowlearning/agents':
     specifier: ^0.3.7
     version: 0.3.7
+  fast-json-patch:
+    specifier: ^3.1.1
+    version: 3.1.1
   vue:
     specifier: ^3.2.47
     version: 3.2.47

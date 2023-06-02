@@ -1,29 +1,51 @@
 <template>
-  <button @click="count += 1">Add to the Count (current count: {{ count }})</button>
-  <img
-    v-for="n in count"
-    :key="n"
-    src="/knowlearning.png"
-    @click="count -= 1"
-  />
+  <svg viewBox="0 0 600 600">
+    <circle
+      :cx="location.x"
+      :cy="location.y"
+      r="8"
+      fill="black"
+    />
+    <OtherPlayers
+      :players="players"
+    />
+  </svg>
 </template>
 
 <script>
+  import OtherPlayers from './other-players.vue'
+
   export default {
+    components: {
+      OtherPlayers
+    },
     data() {
       return {
-        count: 0
+        players: [],
+        location: {
+          x: 0,
+          y: 0
+        }
       }
+    },
+    async created() {
+      window.addEventListener('mousemove', ({ clientX, clientY}) => {
+        this.location.x = clientX
+        this.location.y = clientY
+      })
+      Agent.mutate('players').then(s => s.me = {})
+      const players = await Agent.state('all-players')
+      this.players = players.map(({ owner }) => owner)
     }
   }
 </script>
 
 <style scoped>
 
-  img {
-    width: 16px;
-    height: 16px;
-    margin: 4px;
-  }
+svg {
+  width: 600px;
+  height: 600px;
+  background: #EEEEEE;
+}
 
 </style>
