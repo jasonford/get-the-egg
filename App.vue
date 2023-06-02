@@ -1,4 +1,5 @@
 <template>
+  <Scoreboard />
   <svg viewBox="0 0 600 600">
     <circle
       :cx="location.x"
@@ -19,11 +20,13 @@
 <script>
   import TheEgg from './the-egg.vue'
   import OtherPlayers from './other-players.vue'
+  import Scoreboard from './scoreboard.vue'
 
   export default {
     components: {
       OtherPlayers,
-      TheEgg
+      TheEgg,
+      Scoreboard
     },
     data() {
       return {
