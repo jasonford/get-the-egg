@@ -1,6 +1,6 @@
-import { BrowserAgent, vuePersistentComponent } from '@knowlearning/agents'
+import { browserAgent, vuePersistentComponent } from '@knowlearning/agents'
 import App from './App.vue'
 
-window.Agent = BrowserAgent()
+window.Agent = browserAgent()
 
 vuePersistentComponent(App)
