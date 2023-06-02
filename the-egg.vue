@@ -1,6 +1,6 @@
 <template>
   <circle
-    v-if="x !== null && y !== null"
+    v-if="x !== null && y !== null && visible"
     :cx="x"
     :cy="y"
     r="16"
@@ -21,13 +21,15 @@
       return {
         id: null,
         x: null,
-        y: null
+        y: null,
+        visible: false
       }
     },
     created() {
       const pingLoop = async () => {
         const [egg] = await Agent.state('the-egg-is-where')
         if (egg) {
+          this.visible = true
           this.id = egg.id
           this.x = egg.x
           this.y = egg.y
@@ -38,7 +40,8 @@
     },
     watch: {
       distanceToEgg(d) {
-        if (d !== null && d < 16) {
+        if (this.visible && d !== null && d < 16) {
+          this.visible = false
           this.$emit('gotIt', this.id)
         }
       }
