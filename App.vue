@@ -9,7 +9,10 @@
     <OtherPlayers
       :players="players"
     />
-    <TheEgg />
+    <TheEgg
+      @gotIt="gotTheEgg"
+      :cursor="location"
+    />
   </svg>
 </template>
 
@@ -38,7 +41,7 @@
           const eggLoop = () => {
             const x = Math.round(Math.random() * 600)
             const y = Math.round(Math.random() * 600)
-            whereistheegg.asdf = { x, y }
+            whereistheegg[Date.now()] = { x, y }
             setTimeout(eggLoop, 1000)
           }
           eggLoop()
@@ -50,6 +53,13 @@
       Agent.mutate('players').then(s => s.me = {})
       const players = await Agent.state('all-players')
       this.players = players.map(({ owner }) => owner)
+    },
+    methods: {
+      gotTheEgg(eggId) {
+        Agent
+          .mutate('eggassertions')
+          .then(eggassertions => eggassertions[eggId] = {})
+      }
     }
   }
 </script>
