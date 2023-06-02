@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  import _ from 'lodash'
   import TheEgg from './the-egg.vue'
   import OtherPlayers from './other-players.vue'
   import Scoreboard from './scoreboard.vue'
@@ -49,10 +50,12 @@
           }
           eggLoop()
         })
-      window.addEventListener('mousemove', ({ clientX, clientY}) => {
-        this.location.x = clientX
-        this.location.y = clientY
-      })
+      window.addEventListener('mousemove', _.throttle(({ clientX, clientY}) => {
+        this.location = {
+          x: clientX,
+          y: clientY
+        }
+      }, 100))
       Agent.mutate('players').then(s => s.me = {})
       const players = await Agent.state('all-players')
       this.players = players.map(({ owner }) => owner)
