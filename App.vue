@@ -9,15 +9,18 @@
     <OtherPlayers
       :players="players"
     />
+    <TheEgg />
   </svg>
 </template>
 
 <script>
+  import TheEgg from './the-egg.vue'
   import OtherPlayers from './other-players.vue'
 
   export default {
     components: {
-      OtherPlayers
+      OtherPlayers,
+      TheEgg
     },
     data() {
       return {
@@ -29,6 +32,17 @@
       }
     },
     async created() {
+      Agent
+        .mutate('whereistheegg')
+        .then(whereistheegg => {
+          const eggLoop = () => {
+            const x = Math.round(Math.random() * 600)
+            const y = Math.round(Math.random() * 600)
+            whereistheegg.asdf = { x, y }
+            setTimeout(eggLoop, 1000)
+          }
+          eggLoop()
+        })
       window.addEventListener('mousemove', ({ clientX, clientY}) => {
         this.location.x = clientX
         this.location.y = clientY
