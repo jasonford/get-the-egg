@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@knowlearning/agents':
-    specifier: ^0.3.7
-    version: 0.3.7
+    specifier: ^0.3.13
+    version: 0.3.13
   fast-json-patch:
     specifier: ^3.1.1
     version: 3.1.1
@@ -729,8 +729,8 @@ packages:
       yargs: 17.7.2
     dev: false
 
-  /@knowlearning/agents@0.3.7:
-    resolution: {integrity: sha512-1l/e/OiRbZxvpg1iO2D/9j//s9D8bDTArqTxVvGzcJRjufBfww8pdzLXcCde6yu5ChroDjpnfGFHVVqw4Y6HMA==}
+  /@knowlearning/agents@0.3.13:
+    resolution: {integrity: sha512-8CKLuy/Zo3ewWIqRbIhObgyCFpeFFJxLCTuazKdHX5u4eMdYzIYE3Ckt6XbWzsvfObJO5KlqMXLv1rWzrEZ0sw==}
     dependencies:
       fast-json-patch: 3.1.1
       firebase: 9.21.0
